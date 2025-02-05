@@ -4,7 +4,7 @@ import ParallaxText from "./ui/ParallaxText";
 
 export default function Skills({ skills }) {
   return (
-    <section id="skills">
+    <section id="skills" className="border-b-2 border-t-2 border-black">
       <ParallaxText baseVelocity={-5}>
         {skills.map((skill) =>
           skill.enabled ? (

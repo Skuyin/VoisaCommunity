@@ -24,8 +24,70 @@
 }
 
 
+/*button heropage animation*/
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  } /* Bergerak terus ke kanan */
+}
 
 
+.animate-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ff92,
+    #00c8ff,
+    #8000ff,
+    #ff0080,
+    #ff0000
+  );
+  background-size: 300% 300%;
+  animation: borderAnimation 3s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* bhover text*/
+.hoverText {
+  display: inline-block;
+  color: black;
+  transition: all 0.4s ease-in-out;
+}
+
+.hoverText:hover {
+  background: linear-gradient(to top, #56ccf2, #4a90e2);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.1);
+}
+
+/* Use the .animatedTitle class instead of .quote */
+.animatedTitle {
+  margin-top: 0px;
+  font-size: clamp(3rem, 8rem, 6vw); /* Increased font size */
+  line-height: 76px;
+  text-align: center;
+  overflow: hidden;
+  color: black;
+}
+
+.split-char {
+  display: inline-block;
+  overflow: hidden;
+}
 
 html {
   scroll-behavior: smooth;

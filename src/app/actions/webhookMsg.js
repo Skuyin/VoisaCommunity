@@ -42,23 +42,7 @@ export const sendDiscordMessage = async (prevState, formData) => {
       body: JSON.stringify({
         username: rawFormEntries?.username,
         avatar_url: "https://i.imgur.com/mDKlggm.png",
-        content: rawFormEntries?.subject,
-        embeds: [
-          {
-            fields: [
-              {
-                name: "Email",
-                value: rawFormEntries?.email,
-                inline: true,
-              },
-              {
-                name: "Message",
-                value: rawFormEntries?.message,
-                inline: true,
-              },
-            ],
-          },
-        ],
+        content: `**NAME:** **\`${rawFormEntries?.username}\`** \n**EMAIL:** **\`${rawFormEntries?.email}\`** \n**SUBJECT:** **\`${rawFormEntries?.subject}\`** \n**MESSAGE:**\n${rawFormEntries?.message}`,
       }),
     });
     return {
