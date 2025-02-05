@@ -1,8 +1,4 @@
 "use client";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import ThemeSwitcher from "@/app/components/ThemeSwitcher";
 import Skills from "./components/Skills";
 import Header from "./components/header";
 import { skills, social_handles, testimonials } from "../../src/dummy";
@@ -16,12 +12,11 @@ export default function Home() {
   return (
     <main className="relative">
       <Header social={social_handles} />
-      {/* <Hero /> */}
-      {/* <About /> */}
-
-      {/* <Skills skills={skills} /> */}
-      {/* <MembersServer /> */}
-      {/* <Testimonials testimonials={testimonials} /> */}
+      <Hero />
+      <About />
+      <Skills skills={skills} />
+      <MembersServer />
+      <Testimonials testimonials={testimonials} />
       <MessageForm />
     </main>
   );
