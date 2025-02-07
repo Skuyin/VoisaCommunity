@@ -56,9 +56,9 @@ const About = () => {
   return (
     <>
       <section className=" mx-auto">
-        <div className="lg:text-8xl text-3xl text-center md:ml-3 md:m-10 font-bold text-black">
+        <h2 className="my-6 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-[#000000]">
           TENTANG KAMI.
-        </div>
+        </h2>
         <div className="flex flex-row w-4/4 flex-wrap text-center">
           {infoCard.map((i) => (
             <motion.div

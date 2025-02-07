@@ -4,32 +4,23 @@ import { AnimatePresence, motion } from "motion/react";
 
 const MembersServer = () => {
   const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 });
-  const [activeTabs, setActiveTabs] = useState("Online");
+  const [activeTabs, setActiveTabs] = useState("Members");
 
   return (
     <section>
-      <h2 className="mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">
-        Meet our Team
+      <h2 className="my-6 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-[#000000]">
+        Meet our Community
       </h2>
-      <ul
+      {/* <ul
         onMouseLeave={() => setPosition((prev) => ({ ...prev, opacity: 0 }))}
-        className="relative mx-auto flex w-fit rounded-full border-2 border-black p-1"
+        className="relative mx-auto flex w-fit rounded-full border-2 border-white p-1 bg-black "
       >
         {" "}
-        <Tab setPosition={setPosition} setActiveTabs={setActiveTabs}>
-          Online
-        </Tab>
-        <Tab setPosition={setPosition} setActiveTabs={setActiveTabs}>
-          Teams
-        </Tab>
-        <Tab setPosition={setPosition} setActiveTabs={setActiveTabs}>
-          Leaderboards
-        </Tab>
         <Tab setPosition={setPosition} setActiveTabs={setActiveTabs}>
           Members
         </Tab>
         <Cursor position={position} />
-      </ul>
+      </ul> */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTabs}
@@ -38,10 +29,11 @@ const MembersServer = () => {
           exit={{ y: -10, opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {activeTabs === "Online" && <OnlineMembers />}
-          {activeTabs === "Teams" && <Teams />}
-          {activeTabs === "Leaderboards" && <Teams />}
-          {activeTabs === "Members" && <Teams />}
+          {activeTabs === "Members" && <OnlineMembers />}
+
+          {/* {activeTabs === "Teams" && <Teams />} */}
+          {/* {activeTabs === "Leaderboards" && <Teams />}
+            {activeTabs === "Members" && <Teams />} */}
         </motion.div>
       </AnimatePresence>
     </section>
@@ -67,14 +59,14 @@ const Tab = ({ children, setPosition, setActiveTabs }) => {
   );
 };
 
-const Cursor = ({ position }) => {
-  return (
-    <motion.li
-      animate={position}
-      className="absolute z-0 h-8 rounded-full bg-black md:h-16"
-    />
-  );
-};
+// const Cursor = ({ position }) => {
+//   return (
+//     <motion.li
+//       animate={position}
+//       className="absolute z-0 h-8 rounded-full bg-black md:h-16"
+//     />
+//   );
+// };
 
 const OnlineMembers = () => {
   const [data, setData] = useState(null);
@@ -95,8 +87,8 @@ const OnlineMembers = () => {
 
   if (!data) {
     return (
-      <section className="relative flex text-center h-full">
-        <div>Loading...</div>
+      <section className="relative flex items-center justify-center h-full w-full my-28">
+        <div className="font-bold text-5xl animate-pulse">Loading ⏳</div>
       </section>
     );
   }
@@ -122,20 +114,23 @@ const OnlineMembers = () => {
   }
 
   return (
-    <div className="mx-auto">
-      <div>
-        <h1>Members Online {data.presence_count}</h1>
-      </div>
-
+    <div className="mx-auto w-full flex items-center flex-col">
       {/* Search Input */}
-      <div className="mb-4">
+      <div className="my-6">
         <input
           type="text"
           placeholder="Search members..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-[600px] mdw-[400px] px-4 py-2 border border-gray-300 rounded-md"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+      </div>
+
+      <div className="text-3xl md:text-xl text-[#000000] mb-5">
+        <h1>
+          <span className="font-bold">Members Online</span>:{" "}
+          {data.presence_count}
+        </h1>
       </div>
 
       {/* Member List */}
@@ -146,7 +141,7 @@ const OnlineMembers = () => {
           </h1>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12 w-max place-items-center">
           {filteredMembers.slice(0, visibleCount).map((i) => (
             <div
               key={i.id}
@@ -159,7 +154,7 @@ const OnlineMembers = () => {
                   src={i.avatar_url}
                 />
                 <div className="flex-grow">
-                  <h2 className="text-gray-900 text-xs md:text-xl font-bold truncate w-full max-w-[150px]">
+                  <h2 className="text-gray-900 text-xs md:text-xl font-bold w-full max-w-[200px] mb-3">
                     {i.username}
                   </h2>
                   <div
@@ -167,7 +162,7 @@ const OnlineMembers = () => {
                       (i.status === "idle" && "bg-yellow-600") ||
                       (i.status === "dnd" && "bg-red-600") ||
                       (i.status === "online" && "bg-green-500")
-                    } w-5 h-5 rounded-full`}
+                    } w-5 h-5 rounded-full flex items-center justify-between`}
                   >
                     <span className="ml-6 text-xs font-semibold">
                       {(i.status === "idle" && "Idle") ||
@@ -184,33 +179,52 @@ const OnlineMembers = () => {
       {/* Load More Button */}
       {visibleCount < filteredMembers.length && (
         <div className="text-center mt-6">
-          <button
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          <motion.button
             onClick={() => setVisibleCount((prev) => prev + 20)} // Increase by 20 each time
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            className="relative px-6 py-3 my-6 text-sm md:text-xl font-semibold bg-[#000000] rounded-2xl text-white overflow-hidden group"
           >
             Load More
-          </button>
+            {/* Border animasi */}
+            <motion.div
+              className="absolute inset-1 rounded-2xl border-2 border-transparent opacity-0 group-hover:opacity-100"
+              animate={{ backgroundPosition: ["0% 50%", "300% 50%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              style={{
+                background:
+                  "linear-gradient(90deg,rgb(118, 118, 255), #80dfff)",
+                backgroundSize: "300% 300%",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "exclude",
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+              }}
+            />
+          </motion.button>
         </div>
       )}
     </div>
   );
 };
 
-const Leaderboards = () => {
-  return (
-    <div className="container px-5 py-24 mx-auto">
-      <div className="flex flex-col text-center w-full mb-20">Coming Soon</div>
-    </div>
-  );
-};
+// const Leaderboards = () => {
+//   return (
+//     <div className="container px-5 py-24 mx-auto">
+//       <div className="flex flex-col text-center w-full mb-20">Coming Soon</div>
+//     </div>
+//   );
+// };
 
-const Teams = () => {
-  return (
-    <div className="container px-5 py-24 mx-auto">
-      <div className="flex flex-col text-center w-full mb-20">Coming Soon</div>
-    </div>
-  );
-};
+// const Teams = () => {
+//   return (
+//     <div className="container px-5 py-24 mx-auto">
+//       <div className="flex flex-col text-center w-full mb-20">Coming Soon</div>
+//     </div>
+//   );
+// };
 
 const teamsData = [
   {

@@ -78,15 +78,15 @@ const MessageForm = () => {
   }, [formState]);
 
   return (
-    <div className="flex items-center justify-center p-6">
-      <Form
-        action={handleSubmit}
-        className="w-full mx-auto bg-white rounded-lg"
-      >
-        <h2 className="text-2xl font-bold text-black text-center mb-4">
+    <div className="flex items-center justify-center p-6 bg-black">
+      <Form action={handleSubmit} className="w-full m-auto rounded-lg">
+        <h2 className="lg:my-10 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-white">
           Send Us a Message
         </h2>
-        <div className="flex flex-col p-5 gap-4">
+
+        <div
+          className="flex flex-col p-5 gap-4 w-[70%] m-auto rounded-lg bg-white"
+        >
           <div className="flex gap-4">
             {/* Username */}
             <motion.input
@@ -97,10 +97,10 @@ const MessageForm = () => {
               onChange={handleChange}
               required
               maxLength={maxLengths.username}
-              className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none"
+              className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
             />
           </div>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-black">
             {formValues.username.length}/{maxLengths.username} characters
           </span>
 
@@ -113,9 +113,9 @@ const MessageForm = () => {
             onChange={handleChange}
             required
             maxLength={maxLengths.email}
-            className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none"
+            className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
           />
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-black">
             {formValues.email.length}/{maxLengths.email} characters
           </span>
 
@@ -128,9 +128,9 @@ const MessageForm = () => {
             onChange={handleChange}
             required
             maxLength={maxLengths.subject}
-            className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none"
+            className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
           />
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-black">
             {formValues.subject.length}/{maxLengths.subject} characters
           </span>
 
@@ -143,34 +143,38 @@ const MessageForm = () => {
             onChange={handleChange}
             required
             maxLength={maxLengths.message}
-            className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none"
+            className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
           />
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-black">
             {formValues.message.length}/{maxLengths.message} characters
           </span>
-        </div>
 
-        {/* Submit Button */}
-        <motion.button
-          type="submit"
-          className="w-full mt-6 px-4 py-2 text-lg font-semibold text-white rounded-md focus:outline-none"
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300 }}
-          style={{
-            background: "linear-gradient(to top,   #4A90E2, #56CCF2)",
-          }}
-        >
-          {isPending || isPendingTransition ? (
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
-            >
-              Sending...
-            </motion.span>
-          ) : (
-            "Send"
-          )}
-        </motion.button>
+          {/* Submit Button */}
+          <motion.button
+            type="submit"
+            className="w-full mt-6 px-4 py-2 text-lg font-semibold text-white rounded-md"
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            style={{
+              background: "black",
+            }}
+          >
+            {isPending || isPendingTransition ? (
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1,
+                  ease: "easeInOut",
+                }}
+              >
+                Sending...
+              </motion.span>
+            ) : (
+              "Send"
+            )}
+          </motion.button>
+        </div>
       </Form>
     </div>
   );
