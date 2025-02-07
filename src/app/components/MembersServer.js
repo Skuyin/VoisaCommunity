@@ -7,9 +7,9 @@ const MembersServer = () => {
   const [activeTabs, setActiveTabs] = useState("Online");
 
   return (
-    <section>
-      <h2 className="mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">
-        Meet our Team
+    <section className="mt-10">
+      <h2 className="mb-4 text-center text-2xl font-bold md:mb-6 lg:text-7xl text-black">
+        ANGGOTA KOMUNITAS KAMI
       </h2>
       <ul
         onMouseLeave={() => setPosition((prev) => ({ ...prev, opacity: 0 }))}
@@ -23,7 +23,7 @@ const MembersServer = () => {
           Teams
         </Tab>
         <Tab setPosition={setPosition} setActiveTabs={setActiveTabs}>
-          Leaderboards
+          Top
         </Tab>
         <Tab setPosition={setPosition} setActiveTabs={setActiveTabs}>
           Members
@@ -38,10 +38,34 @@ const MembersServer = () => {
           exit={{ y: -10, opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {activeTabs === "Online" && <OnlineMembers />}
-          {activeTabs === "Teams" && <Teams />}
-          {activeTabs === "Leaderboards" && <Teams />}
-          {activeTabs === "Members" && <Teams />}
+          {activeTabs === "Online" && (
+            <div className="container px-5 py-5 mx-auto">
+              <div className="flex flex-col text-center w-full mb-20">
+                <OnlineMembers />
+              </div>
+            </div>
+          )}
+          {activeTabs === "Teams" && (
+            <div className="container px-5 py-24 mx-auto">
+              <div className="flex flex-col text-center w-full mb-20">
+                Coming Soon
+              </div>
+            </div>
+          )}
+          {activeTabs === "Top" && (
+            <div className="container px-5 py-24 mx-auto">
+              <div className="flex flex-col text-center w-full mb-20">
+                Coming Soon
+              </div>
+            </div>
+          )}
+          {activeTabs === "Members" && (
+            <div className="container px-5 py-24 mx-auto">
+              <div className="flex flex-col text-center w-full mb-20">
+                Coming Soon
+              </div>
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </section>
@@ -95,8 +119,9 @@ const OnlineMembers = () => {
 
   if (!data) {
     return (
-      <section className="relative flex text-center h-full">
-        <div>Loading...</div>
+      <section className="flex flex-col items-center justify-center h-full">
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-gray-600 mt-2">Loading members...</p>
       </section>
     );
   }
@@ -111,28 +136,18 @@ const OnlineMembers = () => {
     member.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (!filteredMembers) {
-    return (
-      <div>
-        {!filteredMembers && (
-          <h1>Member tidak aktif atau page butuh diRefres</h1>
-        )}
-      </div>
-    );
-  }
-
   return (
-    <div className="mx-auto">
-      <div>
-        <h1>Members Online {data.presence_count}</h1>
-      </div>
+    <div className="flex flex-col mx-auto justify-center mt-2">
+      <h1 className="lg:text-xl sm:text-md font-bold text-gray-800">
+        Members Online ({data.presence_count})
+      </h1>
 
       {/* Search Input */}
-      <div className="mb-4">
+      <div className="mt-2">
         <input
           type="text"
           placeholder="Search members..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -142,24 +157,24 @@ const OnlineMembers = () => {
       {filteredMembers.length === 0 ? (
         <div className="text-center mt-4">
           <h1 className="text-red-500 font-bold">
-            Member tidak ditemukan atau tidak aktif. Coba refresh halaman.
+            No members found. Try refreshing the page.
           </h1>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+        <div className="grid grid-cols-2 sm:gap-y-2 sm:gap-x-2 lg:grid-cols-4 gap-x-4 gap-y-4 mt-4">
           {filteredMembers.slice(0, visibleCount).map((i) => (
             <div
               key={i.id}
-              className="flex flex-col gap-2 w-full sm:flex-row md:gap-4"
+              className="flex flex-col gap-2 w-full sm:flex-row md:gap-4 rounded-lg p-2"
             >
-              <div className="h-full flex items-center border-gray-200 rounded-lg">
+              <div className="h-full flex  items-center border-gray-200 rounded-lg">
                 <motion.img
                   alt="team"
                   className="md:w-16 md:h-16 w-10 h-10 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src={i.avatar_url}
                 />
                 <div className="flex-grow">
-                  <h2 className="text-gray-900 text-xs md:text-xl font-bold truncate w-full max-w-[150px]">
+                  <h2 className="text-gray-900 text-xs md:text-xl font-bold sm:truncate w-full max-w-[150px]">
                     {i.username}
                   </h2>
                   <div
@@ -167,7 +182,7 @@ const OnlineMembers = () => {
                       (i.status === "idle" && "bg-yellow-600") ||
                       (i.status === "dnd" && "bg-red-600") ||
                       (i.status === "online" && "bg-green-500")
-                    } w-5 h-5 rounded-full`}
+                    } w-5 h-5 rounded-full flex items-center`}
                   >
                     <span className="ml-6 text-xs font-semibold">
                       {(i.status === "idle" && "Idle") ||
@@ -195,66 +210,5 @@ const OnlineMembers = () => {
     </div>
   );
 };
-
-const Leaderboards = () => {
-  return (
-    <div className="container px-5 py-24 mx-auto">
-      <div className="flex flex-col text-center w-full mb-20">Coming Soon</div>
-    </div>
-  );
-};
-
-const Teams = () => {
-  return (
-    <div className="container px-5 py-24 mx-auto">
-      <div className="flex flex-col text-center w-full mb-20">Coming Soon</div>
-    </div>
-  );
-};
-
-const teamsData = [
-  {
-    id: "1",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-  {
-    id: "2",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-  {
-    id: "3",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-  {
-    id: "4",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-  {
-    id: "5",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-  {
-    id: "6",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-  {
-    id: "7",
-    name: "John McCulling",
-    role: "Admin",
-    img: "https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256",
-  },
-];
 
 export default MembersServer;

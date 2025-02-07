@@ -32,8 +32,6 @@ const navLinks = [
   },
 ];
 
-
-
 const Header = ({ social }) => {
   const [isActive, setIsActive] = useState(false);
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -58,16 +56,14 @@ const Header = ({ social }) => {
 
   return (
     <motion.header className="fixed top-0 md:mt-12 md:mr-12 right-0 z-20">
-      <Transition className="fixed md:top-8 top-6 md:left-8 left-6 z-30 ">
-        <Link href={"/"}>
-          <TextReveal className="font-semibold text-2xl">VOISA COMMUNITY</TextReveal>
-        </Link>
-      </Transition>
       <motion.div
         initial={false}
         animate={isActive ? "open" : "closed"}
         variants={variants}
-        className="absolute top-0 right-0 md:-top-6 md:-right-6 w-dvw md:w-[480px] h-dvh md:h-[calc(100dvh_-_2.5rem)] bg-primary"
+        className="absolute top-0 right-0 md:-top-6 md:-right-6 w-dvw md:w-[480px] h-dvh md:h-[calc(100dvh_-_2.5rem)] bg-[#4A90E2]"
+        style={{
+          background: "linear-gradient(to top,  #56CCF2, #4A90E2)",
+        }}
       >
         {isActive && (
           <nav className="flex justify-between flex-col w-full h-full px-10 pt-[100px] pb-[50px]">
@@ -116,7 +112,14 @@ const Header = ({ social }) => {
                 );
               })}
             </div>
-            <motion.div className="flex flex-wrap">
+            <Transition className="w-1/2 mt-1">
+              <Link href={"/"}>
+                <TextReveal className="font-semibold text-1xl text-white">
+                  VOISA COMMUNITY
+                </TextReveal>
+              </Link>
+            </Transition>
+            {/* <motion.div className="flex flex-wrap">
               {social.map((link, i) => {
                 const { platform, _id, url } = link;
                 return (
@@ -135,7 +138,7 @@ const Header = ({ social }) => {
                   </MotionLink>
                 );
               })}
-            </motion.div>
+            </motion.div> */}
           </nav>
         )}
       </motion.div>
@@ -160,7 +163,7 @@ function Button({ isActive, toggleMenu }) {
         transition={{ duration: 0.5, type: "tween", ease: [0.76, 0, 0.24, 1] }}
       >
         <motion.div
-          className="bg-primary h-full w-full grid place-items-center text-black"
+          className="bg-[#4A90E2] h-full w-full grid place-items-center text-white"
           onClick={() => {
             toggleMenu();
           }}
@@ -168,7 +171,7 @@ function Button({ isActive, toggleMenu }) {
           <TextReveal>Menu</TextReveal>
         </motion.div>
         <motion.div
-          className="bg-black h-full w-full grid place-items-center"
+          className="bg-black h-full w-full grid place-items-center text-white"
           onClick={() => {
             toggleMenu();
           }}
@@ -179,8 +182,6 @@ function Button({ isActive, toggleMenu }) {
     </div>
   );
 }
-
-
 
 const perspective = {
   initial: {

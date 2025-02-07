@@ -61,22 +61,17 @@ const TiltCard = () => {
           transform: "translateZ(75px)",
           transformStyle: "preserve-3d",
         }}
-        className="absolute inset-0 grid place-content-center rounded-xl bg-[#56CCF2]"
+        className="absolute inset-0 grid place-content-center rounded-xl bg-[#56CCF2] "
       >
-        {/* <FiMousePointer
-          style={{
-            transform: "translateZ(75px)",
-          }}
-          className="mx-auto text-4xl"
-        /> */}
-        <p
+        <motion.img src="/voisaabout.png" />
+        {/* <p
           style={{
             transform: "translateZ(50px)",
           }}
           className="text-center text-2xl font-bold "
         >
           HOVER ME
-        </p>
+        </p> */}
       </div>
     </motion.div>
   );

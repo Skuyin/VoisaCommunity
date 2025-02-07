@@ -1,63 +1,72 @@
-"use client";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion"; // Ubah import karena "motion/react" salah
 
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-
-const Hero = () => {
+const AnimatedSVG = () => {
   const [paths, setPaths] = useState([]);
 
   useEffect(() => {
-    // Fetch the SVG content dynamically
-    fetch("/indonesia.svg")
+    fetch("/provindo.svg")
       .then((response) => response.text())
       .then((svgText) => {
         const parser = new DOMParser();
         const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
-        const pathElements = Array.from(svgDoc.querySelectorAll("path")); // Get all <path> elements
+        const pathElements = Array.from(svgDoc.querySelectorAll("path")).filter(
+          (path) => path.getAttribute("fill") !== "none"
+        ); // Filter hanya yang punya fill
+
         setPaths(
           pathElements.map((path, index) => ({
-            id: path.id || `path-${index + 1}`, // Use the path ID or generate one
-            d: path.getAttribute("d"), // Get the path's "d" attribute
+            id: path.id || `path-${index + 1}`,
+            d: path.getAttribute("d"),
+            fill: path.getAttribute("fill") || "#FFFFFF", // Pakai fill asli atau default putih
           }))
         );
       });
   }, []);
 
   return (
-    <section className="relative w-full h-96 md:h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-96 md:h-screen flex items-center justify-center overflow-hidden ">
       <motion.svg
-        viewBox="0 0 792.54596 316.66394" // Adjusted for better centering
+        viewBox="0 0 1875.5 860.859"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute w-screen h-screen justify-center object-contain  md:bottom-0"
+        className="absolute w-screen h-screen justify-center object-contain md:bottom-0"
         preserveAspectRatio="xMidYMid meet"
       >
         {paths.map((path, index) => (
           <motion.path
             key={path.id}
-            d={path.d} // Set the "d" attribute for the path
+            d={path.d}
             initial={{
-              fill: "#FFFFFF", // Start color
-
-              opacity: 1, // Fully transparent
+              fill: path.fill, // Pakai warna asli dari SVG
+              opacity: 0,
             }}
             animate={{
-              fill: ["#FFFFFF", "#7FB3FF", "#56CCF2", "#4A90E2"], // Gradual color change
-              scale: [0.9, 1, 0.9], // Scale up and back down
-              opacity: 1, // Fade in
+              fill: path.fill, // Animasi warna
+              scale: [0.9, 1],
+              opacity: 1,
               stroke: "#4A90E2",
             }}
             transition={{
-              duration: 4, // Total animation time
-              delay: index * 0.3, // Staggered delay for each path
-              repeat: Infinity, // Loop forever
-              repeatType: "reverse", // Reverse direction for smooth looping
-              ease: "easeInOut", // Smooth easing
+              duration: 3,
+              ease: "easeInOut",
             }}
           />
         ))}
       </motion.svg>
-      <div className="relative z-10 text-center top-12 md:top-0">
-        <h1 className="text-4xl md:text-9xl font-bold text-black drop-shadow-lg">
+      
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 3,
+        }}
+        className="relative z-10 text-center top-28 md:top-0"
+      >
+        <h1 className="text-3xl md:text-6xl lg:text-9xl font-bold text-black drop-shadow-lg">
           Voisa Community
         </h1>
         <a
@@ -91,9 +100,19 @@ const Hero = () => {
             />
           </motion.button>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
-export default Hero;
+
+
+const Ngetes = () => {
+  return (
+    <div>
+      <AnimatedSVG />
+    </div>
+  );
+};
+
+export default Ngetes;

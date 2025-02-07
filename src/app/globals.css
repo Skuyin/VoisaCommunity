@@ -60,7 +60,7 @@
   -webkit-mask-composite: xor;
 }
 
-/* bhover text*/
+/* bhover text about*/
 .hoverText {
   display: inline-block;
   color: black;
@@ -71,7 +71,6 @@
   background: linear-gradient(to top, #56ccf2, #4a90e2);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  transform: scale(1.1);
 }
 
 /* Use the .animatedTitle class instead of .quote */
