@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210, 90%, 96%; /* Biru pastel lembut */
+    --foreground: 210, 25%, 25%; /* Biru tua untuk teks */
+
+    --card: 50, 100%, 95%; /* Kuning pastel */
+    --card-foreground: 50, 50%, 20%; /* Kuning gelap untuk teks */
+
+    --primary: 190.29deg 51.22% 59.8%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 45, 85%, 55%; /* Kuning keemasan cerah */
+    --secondary-foreground: 0 0% 98%;
+
+    --border: 210, 75%, 80%; /* Biru terang untuk elemen garis */
+    --input: 210, 80%, 90%; /* Biru sangat terang untuk elemen input */
+    --ring: 340, 90%, 80%; /* Pink terang untuk fokus */
+    --opacity-color: 255, 220, 230; /* Warna lembut untuk elemen semi transparan */
+  }
+}
+
+
+/*button heropage animation*/
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  } /* Bergerak terus ke kanan */
+}
+
+
+.animate-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ff92,
+    #00c8ff,
+    #8000ff,
+    #ff0080,
+    #ff0000
+  );
+  background-size: 300% 300%;
+  animation: borderAnimation 3s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* bhover text*/
+.hoverText {
+  display: inline-block;
+  color: black;
+  transition: all 0.4s ease-in-out;
+}
+
+.hoverText:hover {
+  background: linear-gradient(to top, #56ccf2, #4a90e2);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.1);
+}
+
+/* Use the .animatedTitle class instead of .quote */
+.animatedTitle {
+  margin-top: 0px;
+  font-size: clamp(3rem, 8rem, 6vw); /* Increased font size */
+  line-height: 76px;
+  text-align: center;
+  overflow: hidden;
+  color: black;
+}
+
+.split-char {
+  display: inline-block;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@layer base {
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-secondary w-0.5 rounded-full;
+  }
+
+  *::-webkit-scrollbar {
+    @apply w-0;
+  }
+}
+
+.blob {
+  background: conic-gradient(from 2.35rad, #c76000, rgba(7, 29, 228, 0.5));
+}
+
+.text-reveal {
+  display: inline;
+  background: linear-gradient(
+    to right,
+    rgba(var(--opacity-color), 1) 0%,
+    rgba(var(--opacity-color), 1) 50%,
+    rgba(var(--opacity-color), 0.2) 50%,
+    rgba(var(--opacity-color), 0.2) 100%
+  );
+  background-clip: text;
+  background-size: 200% 100%;
+  background-position: right bottom;
+  color: transparent;
+  background-repeat: no-repeat;
+}
