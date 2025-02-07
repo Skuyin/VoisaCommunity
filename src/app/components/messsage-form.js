@@ -83,11 +83,16 @@ const MessageForm = () => {
         action={handleSubmit}
         className="w-full m-auto rounded-lg"
       >
-        <h2 className="my-6 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-white">
+        <h2 className="lg:my-10 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-white">
         Send Us a Message
       </h2>
       
-        <div className="flex flex-col p-5 gap-4 w-[70%] mx-auto bg-slate-500 rounded-lg">
+      <div
+  className="flex flex-col p-5 gap-4 w-[70%] m-auto rounded-lg"
+  style={{
+    background: "linear-gradient(90deg, rgb(118, 118, 255), #80dfff)",
+  }}
+>
           <div className="flex gap-4">
             {/* Username */}
             <motion.input
@@ -98,7 +103,7 @@ const MessageForm = () => {
               onChange={handleChange}
               required
               maxLength={maxLengths.username}
-              className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none rounded-md"
+              className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
             />
           </div>
           <span className="text-sm text-white">
@@ -114,7 +119,7 @@ const MessageForm = () => {
             onChange={handleChange}
             required
             maxLength={maxLengths.email}
-            className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none rounded-md"
+            className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
           />
           <span className="text-sm text-white">
             {formValues.email.length}/{maxLengths.email} characters
@@ -129,7 +134,7 @@ const MessageForm = () => {
             onChange={handleChange}
             required
             maxLength={maxLengths.subject}
-            className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none rounded-md"
+            className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
           />
           <span className="text-sm text-white">
             {formValues.subject.length}/{maxLengths.subject} characters
@@ -144,7 +149,7 @@ const MessageForm = () => {
             onChange={handleChange}
             required
             maxLength={maxLengths.message}
-            className="w-full px-4 py-2 text-black border-2 font-semibold border-slate-400 outline-none rounded-md"
+            className="w-full px-4 py-2 text-black border-2 font-semibold border-black outline-none rounded-md"
           />
           <span className="text-sm text-white">
             {formValues.message.length}/{maxLengths.message} characters
@@ -154,11 +159,11 @@ const MessageForm = () => {
         {/* Submit Button */}
         <motion.button
           type="submit"
-          className="w-full mt-6 px-4 py-2 text-lg font-semibold text-black focus:outline-none rounded-md bg-white hover:opacity-90"
+          className="w-full mt-6 px-4 py-2 text-lg font-semibold text-white rounded-md"
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300 }}
           style={{
-            background: "linear-gradient(90deg,rgb(118, 118, 255), #80dfff)",
+            background: "black",
           }}
         >
           {isPending || isPendingTransition ? (
