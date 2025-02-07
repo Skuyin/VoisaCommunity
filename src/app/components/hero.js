@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-
 const Hero = () => {
   const [paths, setPaths] = useState([]);
 
@@ -43,7 +42,7 @@ const Hero = () => {
             }}
             animate={{
               fill: ["#FFFFFF", "#7FB3FF", "#56CCF2", "#4A90E2"], // Gradual color change
-              scale: [0.9, 1, 0.9], // Scale up and back down
+              // scale: [0.9, 1, 0.9], // Scale up and back down
               opacity: 1, // Fade in
               stroke: "#4A90E2",
             }}
@@ -58,9 +57,9 @@ const Hero = () => {
         ))}
       </motion.svg>
       <div className="relative z-10 text-center top-12 md:top-0">
-        <h1 className="text-4xl md:text-9xl font-bold text-black drop-shadow-lg">
+        <h2 className="my-6 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-[#000000]">
           Voisa Community
-        </h1>
+        </h2>
         <a
           href="https://discord.com/invite/F4Bjuyvs"
           target="_blank"
@@ -71,17 +70,17 @@ const Hero = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="relative px-6 py-3 text-sm md:text-xl font-semibold bg-[#4A90E2] rounded-full text-white overflow-hidden group"
+            className="relative px-6 py-3 my-6 text-sm md:text-xl font-semibold bg-[#000000] rounded-2xl text-white overflow-hidden group"
           >
             Learn More
             {/* Border animasi */}
             <motion.div
-              className="absolute inset-0 rounded-full border-2 border-transparent opacity-0 group-hover:opacity-100"
+              className="absolute inset-1 rounded-2xl border-2 border-transparent opacity-0 group-hover:opacity-100"
               animate={{ backgroundPosition: ["0% 50%", "300% 50%"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               style={{
                 background:
-                  "linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ff92, #00c8ff, #8000ff, #ff0080, #ff0000)",
+                  "linear-gradient(90deg,rgb(118, 118, 255), #80dfff)",
                 backgroundSize: "300% 300%",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 maskComposite: "exclude",

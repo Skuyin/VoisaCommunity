@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { InfiniteScroll } from "./ui/InfiniteScroll";
 import { SlideIn, Transition } from "./ui/Transitions";
 import { SectionHeading } from "./ui/Typography";
@@ -7,11 +8,9 @@ import { SectionHeading } from "./ui/Typography";
 const Testimonials = ({ testimonials }) => {
   return (
     <section className="py-20 relative" id="testimonials">
-      {/* <span className="blob size-1/2 absolute -top-20 left-0 blur-[100px] -z-10" /> */}
-      <SectionHeading className="md:pl-28">
-        {/* <SlideIn className="text-white/40">What Our</SlideIn> <br /> */}
-        <SlideIn className="">Kata Member</SlideIn>
-      </SectionHeading>
+      <h2 className="my-6 text-center lg:text-9xl font-bold md:my-6 md:text-4xl text-[#000000]">
+        Kata Members
+      </h2>
       <Testimonial testimonials={testimonials} speed="normal" pauseOnHover />
       <Testimonial
         testimonials={testimonials}
@@ -48,7 +47,7 @@ const Testimonial = ({ testimonials, direction, speed, pauseOnHover }) => {
               </p>
             </div>
             <div className="flex gap-3 pt-6">
-              <img
+              <Image
                 src={val.image.url}
                 width={50}
                 height={50}
