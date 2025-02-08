@@ -52,7 +52,7 @@ const MembersServer = () => {
           {activeTabs === "Leaderboard" && (
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-col text-center w-full mb-20">
-                <TopMembers />
+                <h1>Comming Soon</h1>
               </div>
             </div>
           )}
