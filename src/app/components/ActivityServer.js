@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 const ActivityServer = () => {
   return (
-    <section className="relative grid min-h-screen w-full place-content-center overflow-hidden ">
+    <section className="relative grid min-h-screen w-full place-content-center overflow-hidden " id="activity">
       <h2 className="relative z-0 text-[10vw] font-black text-neutral-800 md:text-[100px]">
         Aktivitas<span className="text-indigo-500">.</span>
       </h2>
@@ -47,7 +47,7 @@ const Cards = () => {
       />
       <Card
         containerRef={containerRef}
-        src="https://dummyimage.com/500&text=dummyimage.com+rocks!"
+        src="https://dummyimage.com/300&text=dummyimage.com+rocks!"
         alt="Example image"
         rotate="8deg"
         top="50%"

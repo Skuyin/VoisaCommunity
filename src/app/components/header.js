@@ -19,12 +19,12 @@ const navLinks = [
     href: "#about",
   },
   {
-    title: "Services",
-    href: "#services",
+    title: "Activity",
+    href: "#activity",
   },
   {
-    title: "Projects",
-    href: "#projects",
+    title: "Members",
+    href: "#members",
   },
   {
     title: "Contact",

@@ -5,5 +5,5 @@ const nextConfig = {
     RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY,
   },
 };
-
+console.log('Environment Variables in next.config.mjs:', process.env);
 export default nextConfig;

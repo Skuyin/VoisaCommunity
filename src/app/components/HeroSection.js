@@ -1,7 +1,8 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Ubah import karena "motion/react" salah
 
-const AnimatedSVG = () => {
+const HeroSection = () => {
   const [paths, setPaths] = useState([]);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const AnimatedSVG = () => {
           />
         ))}
       </motion.svg>
-      
+
       <motion.div
         initial={{
           opacity: 0,
@@ -105,14 +106,4 @@ const AnimatedSVG = () => {
   );
 };
 
-
-
-const Ngetes = () => {
-  return (
-    <div>
-      <AnimatedSVG />
-    </div>
-  );
-};
-
-export default Ngetes;
+export default HeroSection;

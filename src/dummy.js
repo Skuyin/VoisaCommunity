@@ -1,45 +1,4 @@
-export const social_handles = [
-  {
-    platform: "Instagram",
-    url: "https://www.instagram.com/tehseen.01/",
-    image: {
-      public_id: "1708718250873-3038n7.webp",
-      url: "https://portfolio-image-store.s3.ap-south-1.amazonaws.com/1708718250873-3038n7.webp",
-    },
-    enabled: true,
-    _id: "65b3ea4feb20546ae6d4641d",
-  },
-  {
-    platform: "LinkedIn",
-    url: "http://www.linkedin.com/in/tehseen01",
-    image: {
-      public_id: "1708718263294-2lfj67.webp",
-      url: "https://portfolio-image-store.s3.ap-south-1.amazonaws.com/1708718263294-2lfj67.webp",
-    },
-    enabled: true,
-    _id: "65b3e99beb20546ae6d463c2",
-  },
-  {
-    platform: "Twitter",
-    url: "https://x.com/tehseen_type",
-    image: {
-      public_id: "1708718328750-d4jsq.webp",
-      url: "https://portfolio-image-store.s3.ap-south-1.amazonaws.com/1708718328750-d4jsq.webp",
-    },
-    enabled: true,
-    _id: "65b3e47cb48589dfcae185bd",
-  },
-  {
-    platform: "Facebook",
-    url: "#",
-    image: {
-      public_id: "1708718346601-xldm.webp",
-      url: "https://portfolio-image-store.s3.ap-south-1.amazonaws.com/1708718346601-xldm.webp",
-    },
-    enabled: true,
-    _id: "65b3e43cb48589dfcae1856c",
-  },
-];
+
 
 export const skills = [
   {

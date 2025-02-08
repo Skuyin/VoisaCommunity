@@ -63,7 +63,7 @@ const TiltCard = () => {
         }}
         className="absolute inset-0 grid place-content-center rounded-xl bg-[#56CCF2] "
       >
-        <motion.img src="/voisaabout.png" />
+        <motion.img src="/voisaabout.png" className="rounded-xl"/>
         {/* <p
           style={{
             transform: "translateZ(50px)",

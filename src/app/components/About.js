@@ -56,11 +56,11 @@ const About = () => {
 
   return (
     <>
-      <section className="mx-auto">
+      <section className="mx-auto" id="about">
         <div className="lg:text-8xl text-3xl text-center md:ml-3 md:m-10 font-bold text-black">
           TENTANG KAMI.
         </div>
-        <br className="bg-blue-500"  />
+        <br className="bg-blue-500" />
         <div className="flex flex-row w-4/4 flex-wrap text-center">
           {infoCard.map((i) => (
             <motion.div
@@ -136,17 +136,22 @@ const About = () => {
             <h1 className="text-black mx-1 font-bold lg:text-7xl md:text-5xl sm:text-4xl">
               VOISA COMMUNITY
             </h1>
-            <h2 className="cursor-default text-sm lg:text-3xl font-semibold leading-relaxed">
-              {"Kami adalah komunitas yang berasal dari aplikasi Anonymous di Playstore, yang bertujuan untuk menyatukan orang-orang dengan berbagai latar belakang di Indonesia. Di Voisa Community, kami menyediakan ruang untuk berbagi pengalaman, bertukar ide, dan menjalin persahabatan. Kami percaya bahwa setiap anggota memiliki cerita unik yang bisa menginspirasi dan memperkaya satu sama lain. Apakah Kamu mencari tempat untuk ngobrol santai, bermain game bersama, atau ikut kegiatan seru seperti meetup jalan-jalan? Kita siap menyambut kamu! kita juga senang berbagi rekomendasi buku, musik, film, atau bahkan diskusi tentang topik-topik menarik. Selain itu, Voisa Community adalah tempat yang tepat bagi Kamu yang ingin bersosialisasi dan berkolaborasi dalam kegiatan positif. Jadi, jika Kamu mencari tempat untuk berinteraksi, bersenang-senang, dan menjalin koneksi yang bermakna, Voisa Community adalah jawabannya!"
-                .split(" ")
-                .map((word, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-block hoverText mx-1 break-words"
-                  >
-                    {word}
-                  </span>
-                ))}
+            <h2 className="cursor-default text-black text-sm lg:text-3xl font-semibold leading-relaxed">
+              "Kami adalah komunitas yang berasal dari aplikasi Anonymous di
+              Playstore, yang bertujuan untuk menyatukan orang-orang dengan
+              berbagai latar belakang di Indonesia. Di Voisa Community, kami
+              menyediakan ruang untuk berbagi pengalaman, bertukar ide, dan
+              menjalin persahabatan. Kami percaya bahwa setiap anggota memiliki
+              cerita unik yang bisa menginspirasi dan memperkaya satu sama lain.
+              Apakah Kamu mencari tempat untuk ngobrol santai, bermain game
+              bersama, atau ikut kegiatan seru seperti meetup jalan-jalan? Kita
+              siap menyambut kamu! kita juga senang berbagi rekomendasi buku,
+              musik, film, atau bahkan diskusi tentang topik-topik menarik.
+              Selain itu, Voisa Community adalah tempat yang tepat bagi Kamu
+              yang ingin bersosialisasi dan berkolaborasi dalam kegiatan
+              positif. Jadi, jika Kamu mencari tempat untuk berinteraksi,
+              bersenang-senang, dan menjalin koneksi yang bermakna, Voisa
+              Community adalah jawabannya!"
             </h2>
             <div className="mx-auto">
               <AccordionMotion />
